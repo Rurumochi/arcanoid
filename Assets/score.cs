@@ -8,8 +8,8 @@ public class score : MonoBehaviour
     public GameObject Record;
     public Text Score;
     
-    public int ScoreMultiplier;
-    private int record, value;
+    public int ScoreMultiplier, value;
+    private int record;
     public void ScoreCounter() {
         ScoreMultiplier++;
         value = value + ScoreMultiplier;
@@ -23,7 +23,7 @@ public class score : MonoBehaviour
         {
             record = value;
             Record.SetActive(true);
-            Record.GetComponent<Text>().text = "Record " + record.ToString() + " !!!";
+            Record.GetComponent<Text>().text = "Record " + record.ToString() ;
         }
         value = 0;
         ScoreMultiplier = 0;

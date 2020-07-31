@@ -2,18 +2,22 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class gamecontrol : MonoBehaviour
 {
     public GameObject menu;
     public GameObject con;
-    public GameObject end;
-    bool clean = false;
+    public GameObject end, result;
+    bool gameEnd,clean = false;
     public void GameOver()
     {
+        result.GetComponent<Text>().text = GetComponent<score>().value.ToString() + " !!!";
         GetComponent<score>().ResetScore();
         menu.SetActive(true);
         con.SetActive(false);
+        result.SetActive(true);
+        gameEnd = true;
         Time.timeScale = 0f;
     }
     
@@ -31,6 +35,7 @@ public class gamecontrol : MonoBehaviour
         GameObject.Find("platform").GetComponent<platform>().stickyPlatform = true;
         GameObject.Find("ball").GetComponent<ball>().onPlatform = true;
         clean = true;
+        gameEnd = false;
 
         //while (!(GameObject.Find("brick(Clone)") == null))
         //{
@@ -63,10 +68,12 @@ public class gamecontrol : MonoBehaviour
             }
         }
         
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.Escape) && !(gameEnd))
         {
             menu.SetActive(true);
+            con.SetActive(true);
             end.SetActive(false);
+            result.SetActive(false);
             Time.timeScale = 0f;
         }
     }
