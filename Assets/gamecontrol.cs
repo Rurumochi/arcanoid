@@ -9,7 +9,7 @@ public class gamecontrol : MonoBehaviour
     public GameObject menu;
     public GameObject con;
     public GameObject end, result;
-    bool gameEnd,clean = false;
+    bool gameEnd = false;
     public void GameOver()
     {
         result.GetComponent<Text>().text = GetComponent<score>().value.ToString() + " !!!";
@@ -34,13 +34,11 @@ public class gamecontrol : MonoBehaviour
         
         GameObject.Find("platform").GetComponent<platform>().stickyPlatform = true;
         GameObject.Find("ball").GetComponent<ball>().onPlatform = true;
-        clean = true;
+        GetComponent<builder>().Destroy();
+        GetComponent<builder>().Build();
         gameEnd = false;
 
-        //while (!(GameObject.Find("brick(Clone)") == null))
-        //{
-        //Destroy(GameObject.Find("brick(Clone)"));
-        //}
+        
         Time.timeScale = 1f;
 
     }
@@ -55,19 +53,7 @@ public class gamecontrol : MonoBehaviour
         GameObject.Find("misswall").GetComponent<miss>().HP = 2;
     }
     void Update()
-    {
-        if (clean)
-        {
-            Destroy(GameObject.Find("brick(Clone)"));
-            Destroy(GameObject.Find("green(Clone)"));
-            Destroy(GameObject.Find("red(Clone)"));
-            if (!(GameObject.Find("brick(Clone)") || GameObject.Find("red(Clone)") || GameObject.Find("green(Clone)")))
-            {
-                clean = false;
-                GameObject.Find("script").GetComponent<builder>().Build();
-            }
-        }
-        
+    {       
         if (Input.GetKeyDown(KeyCode.Escape) && !(gameEnd))
         {
             menu.SetActive(true);

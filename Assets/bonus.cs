@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class bonus : MonoBehaviour
 {
-    
+    public string bonusType; 
     void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.name == "wallup" || other.gameObject.name == "platform")
@@ -13,7 +13,10 @@ public class bonus : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        if (bonusType == "red")
+            GetComponent<Renderer>().material.color = Color.red;
+        if (bonusType == "green")
+            GetComponent<Renderer>().material.color = Color.green;
     }
 
     // Update is called once per frame

@@ -1,14 +1,16 @@
 ﻿using System;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class builder : MonoBehaviour
 {
-    public Transform brick;
+    public GameObject brickPrefab;
     private Vector3 pos;
     private System.Random rnd = new System.Random();
     public int[,] map = new int[10, 7];
-    // Start is called before the first frame update
+    private List<GameObject> bricks = new List<GameObject>();
+    public List<GameObject> bonuses = new List<GameObject>();
     public void Build()
     {
         pos = new Vector3(-140, 180, 0);
@@ -24,7 +26,8 @@ public class builder : MonoBehaviour
 
                 if (map[y, x] == 1)
                 {
-                    Instantiate(brick, pos, Quaternion.identity);
+                    var brick = Instantiate(brickPrefab, pos, Quaternion.identity);
+                    bricks.Add(brick);
                     map[y, x] = 0;
                 }
                 pos.x = pos.x + 40f;
@@ -34,17 +37,21 @@ public class builder : MonoBehaviour
         }
 
     }
+    public void Destroy()
+    {
+        foreach(var brick in bricks)
+        {
+            Destroy(brick);
+        }
+        bricks.Clear();
+        foreach (var bonus in bonuses)
+        {
+            Destroy(bonus);
+        }
+        bonuses.Clear();
+    }
     void Start()
     {
         Build();
     }
-
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
-
 }

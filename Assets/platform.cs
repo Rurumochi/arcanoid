@@ -16,13 +16,14 @@ public class platform : MonoBehaviour
             stopLeft = true;
         if (other.gameObject.name == "rightwall")
             stopRight = true;
-        if (other.gameObject.name == "green(Clone)")
-            stickyPlatform = true;
-        if (other.gameObject.name == "red(Clone)")
-            turret = true;
-
-
-}
+        if (other.gameObject.name == "bonus(Clone)") 
+        {
+            if (other.gameObject.GetComponent<bonus>().bonusType == "green")
+                stickyPlatform = true;
+            if (other.gameObject.GetComponent<bonus>().bonusType == "red")
+                turret = true;
+        }
+    }
 
 
 void Start()

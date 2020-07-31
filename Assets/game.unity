@@ -1718,7 +1718,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d3283bec26eb234fbaf499491e04b90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  brick: {fileID: 923302219633364293, guid: be3a1ab74ed0aba4ca56bb858c389d5b, type: 3}
+  brickPrefab: {fileID: 1147595993491317899, guid: be3a1ab74ed0aba4ca56bb858c389d5b,
+    type: 3}
+  bonuses: []
 --- !u!114 &1660331502
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2297,7 +2299,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &2005571113
 MonoBehaviour:
   m_ObjectHideFlags: 0

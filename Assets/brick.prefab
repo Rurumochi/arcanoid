@@ -124,5 +124,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hitPoint: 0
-  green: {fileID: 6316801183803357311, guid: e6fae3fd0957b0242b6ee601526041a0, type: 3}
-  red: {fileID: 8062588103820095180, guid: 748495ce638e0884dae7dd5842193095, type: 3}
+  bonusPrefab: {fileID: 6316801183803357307, guid: e6fae3fd0957b0242b6ee601526041a0,
+    type: 3}

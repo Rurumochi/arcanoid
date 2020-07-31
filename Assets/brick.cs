@@ -6,9 +6,12 @@ using UnityEngine.UI;
 public class brick : MonoBehaviour
 {
     public int hitPoint;
-    public Transform green;
-    public Transform red;
+    public GameObject bonusPrefab;
+    private GameObject script;
     
+
+
+
 
     void OnTriggerEnter(Collider other)
     
@@ -25,6 +28,14 @@ public class brick : MonoBehaviour
     void Start()
     {
         hitPoint = 90;
+        script = GameObject.Find("script");
+    }
+    void CreateBonus(string key)
+    {
+        var bonus = Instantiate(bonusPrefab, transform.position, Quaternion.identity);
+        bonus.GetComponent<bonus>().bonusType = key;
+        script.GetComponent<builder>().bonuses.Add(bonus);
+        
     }
 
 
@@ -36,11 +47,11 @@ public class brick : MonoBehaviour
             if (Random.Range(0, 20) < 6)
             {
                 if (Random.Range(0, 2) == 1)
-                    Instantiate(green, transform.position, Quaternion.identity);
+                    CreateBonus("red");
                 else
-                    Instantiate(red, transform.position, Quaternion.identity);
+                    CreateBonus("green");
             }
-            GameObject.Find("script").GetComponent<score>().ScoreCounter();
+            script.GetComponent<score>().ScoreCounter();
             Destroy(gameObject);
         }
     }
